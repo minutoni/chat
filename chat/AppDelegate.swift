@@ -12,6 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var deiceToken: String?
+    var roomId: String?
+    var newroomId: String?
+    var targetId: String?
+    var chatStartFlg: Bool?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
