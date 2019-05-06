@@ -23,8 +23,8 @@ class ViewController: JSQMessagesViewController{
     
     var uid:String = UUID().uuidString
     
-    let userRef = FIRDatabase.database().reference().child("users")
-    let roofRef = FIRDatabase.database().reference()
+    let userRef = Database.database().reference().child("users")
+    let roofRef = Database.database().reference()
     
     let userDefaults = UserDefaults.standard
     
@@ -57,7 +57,7 @@ class ViewController: JSQMessagesViewController{
         self.senderDisplayName = "hoge"
         setupFirebase()
         getRoom()
-        setupChatUI()
+        setupChatUi()
         
         self.messages = []
         
@@ -66,7 +66,7 @@ class ViewController: JSQMessagesViewController{
     func setupFirebase(){
         
         //匿名アカウントを認証する
-        FIRAuth.auth()?.signInAnonymousely() { (user, error) in
+        Auth.auth().signInAnonymously() { (user, error) in
             if error != nil {
                 //エラー時の処理
                 print("失敗")
@@ -85,7 +85,7 @@ class ViewController: JSQMessagesViewController{
         userRef.child(self.uid).setValue(user)
         
         //一回だけwaitingFlgが1のユーザーを取得
-        userRef.queryOrdered(byChild: "waitingFlg").queryEqual(toVlue: "1").observeSingleEvent(of: .value,with: { (snapshot) in
+        userRef.queryOrdered(byChild: "waitingFlg").queryEqual(toValue: "1").observeSingleEvent(of: .value,with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             if (value != nil){
@@ -103,7 +103,7 @@ class ViewController: JSQMessagesViewController{
     
     //他のユーザが自分とマッチするまで待機する
     func checkMyWaitingFlg(){
-        userRef.child(self.uid).observe(FIRDataEventType.childCahnged, with: {(snapshot) in
+        userRef.child(self.uid).observe(DataEventType.childCahnged, with: {(snapshot) in
             print(snapshot)
             let snapshotVal = snapshot.value as! String
             let snapshotKey = snapshot.key
@@ -140,7 +140,7 @@ class ViewController: JSQMessagesViewController{
         self.app.chatStartFlg = true
     
     //【非同期】子要素が増えるたびにmessageに値を追加する。
-        roofRef.child("rooms").child(self.app.roomId!).queryLimited(toLast: 100).observe(FIRDataEventType.childAdded, with: { (snapshot) in
+        roofRef.child("rooms").child(self.app.roomId!).queryLimited(toLast: 100).observe(DataEventType.childAdded, with: { (snapshot) in
             let snapshotValue = snapshot.value as! NSDictionary
             let text          = snapshotValue["text"] as! String
             let sender        = snapshotValue["from"] as! String
@@ -175,12 +175,12 @@ class ViewController: JSQMessagesViewController{
     
     //新しくルームを作る際の数値を取得
     func getNewRoomId(){
-        FIRDatabase.database().reference().child("roomKeyNum").observeSingleEvent(of: .value, with: { (snapshot) in
+        DatabaseHandle().reference().child("roomKeyNum").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if !(snapshot.value is NSNull){
                 self.count = (snapshot.value as! Int) + 1
                 }
-            FIRDatabase.database().reference()
+            Database.database().reference()
             .child("roomKeyNum")
             .setValue(self.count)
             
@@ -198,7 +198,7 @@ class ViewController: JSQMessagesViewController{
         print (self.app.roomId!)
         print (self.app.newroomId!)
         //ユーザ情報を書き換えて行く
-        userRef.child(self.app.targetId!).updateChildValues(["inRoom":self.app.riimId!])
+        userRef.child(self.app.targetId!).updateChildValues(["inRoom":self.app.roomId!])
         userRef.child(self.app.targetId!).updateChildValues(["waitingFlg":"0"])
         userRef.child(self.uid).updateChildValues(["inRoom":self.app.roomId!])
         userRef.child(self.uid).updateChildValues(["waitingFlg":"0"])
@@ -264,7 +264,7 @@ class ViewController: JSQMessagesViewController{
     
     func sendTextToDb(text: String,exitFlg:Bool = false){
         //データベースへの送信（後述）
-        let rootRef = FIRDatabase.database().reference()
+        let rootRef = DatabaseHandle().reference()
         
         var tmpSenderId = senderId as String
         if(exitFlg){
@@ -276,7 +276,7 @@ class ViewController: JSQMessagesViewController{
                                          "text":text]
     
     let postRef = rootRef.child("rooms").child(self.app.roomId!).childByautoId()
-    postref.setvalue(post)
+    postRef.setvalue(post)
     
     }
     
@@ -300,10 +300,9 @@ class ViewController: JSQMessagesViewController{
                                  avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = self.messages?[indexPath.item]
         if message?.senderId == self.senderId {
-            return self.outgoingAvatar
+            return self.outgoingAvater
         }
-        return self.incomingAvatar
-    }
+        return self.incomingAvater  }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (self.messages?.count)!
