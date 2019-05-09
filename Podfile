@@ -12,5 +12,4 @@ pod 'Firebase/Database'
 pod 'Firebase'
 pod 'JSQMessagesViewController'
 pod 'SVProgressHUD'
-pod 'ChameleonFramework/Swift'
 end

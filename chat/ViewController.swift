@@ -29,7 +29,8 @@ class ViewController: JSQMessagesViewController{
     let userDefaults = UserDefaults.standard
     
     //AppDelegateのインスタンスを作り、AppDelegateの変数を使えるようにする
-    let app:AppDelegate = (UIApplication.shared.delegate.as!, AppDelegate)
+    //let app:AppDelegate = (UIApplication.shared.delegate as!, AppDelegate)
+    let app:AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,9 @@ class ViewController: JSQMessagesViewController{
         
         //初回時のみ自分のIDを保存しておく、それ以降は使い回し
         if(userDefaults.string(forKey: "uid") != nil){
-            uid = UserDefaults.string(forKey: "uid")!
+            uid = userDefaults.string(forKey: "uid")!
         }else{
-            UserDefaults.set(uid, forKey: "uid")
+            userDefaults.set(uid, forKey: "uid")
         }
         
         print("自分のuid→\(self.uid)")
@@ -103,7 +104,8 @@ class ViewController: JSQMessagesViewController{
     
     //他のユーザが自分とマッチするまで待機する
     func checkMyWaitingFlg(){
-        userRef.child(self.uid).observe(DataEventType.childCahnged, with: {(snapshot) in
+        //userRef.child(self.uid).observe(FIRDataEventType.childCahnged, with: {(snapshot) in
+            userRef.child(self.uid).child("inRoom").observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
             let snapshotVal = snapshot.value as! String
             let snapshotKey = snapshot.key
@@ -118,7 +120,7 @@ class ViewController: JSQMessagesViewController{
     func getJoinRoom(){
         userRef.child(self.uid).child("inRoom").observeSingleEvent(of: .value, with: { (snapshot) in
             //帰ってくる型が一つしかないからstr型になる
-            let snapshotValue = snapshot.value as! Stinrg
+            let snapshotValue = snapshot.value as! String
             self.app.roomId = snapshotValue
             
             if(self.app.roomId != "0"){
@@ -175,7 +177,7 @@ class ViewController: JSQMessagesViewController{
     
     //新しくルームを作る際の数値を取得
     func getNewRoomId(){
-        DatabaseHandle().reference().child("roomKeyNum").observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("roomKeyNum").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if !(snapshot.value is NSNull){
                 self.count = (snapshot.value as! Int) + 1
@@ -264,7 +266,7 @@ class ViewController: JSQMessagesViewController{
     
     func sendTextToDb(text: String,exitFlg:Bool = false){
         //データベースへの送信（後述）
-        let rootRef = DatabaseHandle().reference()
+        let rootRef = Database.database().reference()
         
         var tmpSenderId = senderId as String
         if(exitFlg){
@@ -275,8 +277,8 @@ class ViewController: JSQMessagesViewController{
                                          "name":senderDisplayName(),
                                          "text":text]
     
-    let postRef = rootRef.child("rooms").child(self.app.roomId!).childByautoId()
-    postRef.setvalue(post)
+        let postRef = rootRef.child("rooms").child(self.app.roomId!).childByAutoId()
+        postRef.setValue(post)
     
     }
     
