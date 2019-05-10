@@ -52,20 +52,33 @@
                                 <items>
                                     <barButtonItem style="plain" id="HSn-1u-5Vs">
                                         <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="10d-8r-JZh">
-                                            <rect key="frame" x="16" y="7" width="250" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="96" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </barButtonItem>
-                                    <barButtonItem title="save" width="717" id="OO6-vA-ugO"/>
+                                    <barButtonItem title="save" width="498" id="OO6-vA-ugO"/>
+                                    <barButtonItem style="plain" id="m5c-ZU-esh">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WFe-5p-r3S">
+                                            <rect key="frame" x="328" y="7" width="31" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="録音"/>
+                                            <connections>
+                                                <action selector="recordButtonTapped" destination="B3N-Ap-eNK" eventType="touchUpInside" id="C6q-nw-XVU"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WH9-EP-6yX"/>
                     </view>
+                    <connections>
+                        <outlet property="recordButton" destination="WFe-5p-r3S" id="47a-b4-3Zh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xb-r3-1Uc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
