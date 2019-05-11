@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		450A46CD0A2E55CD8E496841 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5388434ACB9FE530B3659D55 /* Pods_chat.framework */; };
+		77052F5F22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */; };
 		776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 776E72082283E817002FB9EF /* GoogleService-Info.plist */; };
 		77DE13E822740A5700A7CB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DE13E722740A5700A7CB54 /* AppDelegate.swift */; };
 		77DE13EA22740A5700A7CB54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DE13E922740A5700A7CB54 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 		14DF88C99881E36A946F3EC3 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		2EFA5C3974E65AC56936D67C /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		5388434ACB9FE530B3659D55 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PAK26_soranotex20140209tex_TP_V1.jpg; sourceTree = "<group>"; };
 		776E72082283E817002FB9EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77DE13E422740A5700A7CB54 /* chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DE13E722740A5700A7CB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		77DE13E622740A5700A7CB54 /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */,
 				776E72082283E817002FB9EF /* GoogleService-Info.plist */,
 				77DE13E722740A5700A7CB54 /* AppDelegate.swift */,
 				77DE13E922740A5700A7CB54 /* ViewController.swift */,
@@ -158,6 +161,7 @@
 				776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */,
 				77DE13EF22740A5800A7CB54 /* Assets.xcassets in Resources */,
 				77DE13ED22740A5700A7CB54 /* Main.storyboard in Resources */,
+				77052F5F22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

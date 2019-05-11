@@ -36,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dp-N2-0AP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240.8" y="-145.27736131934034"/>
+            <point key="canvasLocation" x="1118" y="-145"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aR7-EP-Y60">
@@ -46,27 +46,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crW-wj-ZOP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PAK26_soranotex20140209tex_TP_V1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5ZS-hl-6ry">
+                                <rect key="frame" x="0.0" y="-73" width="722" height="1119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDg-I0-nw1">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" id="HSn-1u-5Vs">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="10d-8r-JZh">
-                                            <rect key="frame" x="16" y="7" width="96" height="30"/>
+                                    <barButtonItem id="tWM-cL-VB9"/>
+                                    <barButtonItem style="plain" id="okE-97-mVX">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OAH-2t-ebp">
+                                            <rect key="frame" x="16" y="7" width="343" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem title="save" width="498" id="OO6-vA-ugO"/>
-                                    <barButtonItem style="plain" id="m5c-ZU-esh">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WFe-5p-r3S">
-                                            <rect key="frame" x="328" y="7" width="31" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="録音"/>
+                                            <state key="normal" title="Button"/>
                                             <connections>
-                                                <action selector="recordButtonTapped" destination="B3N-Ap-eNK" eventType="touchUpInside" id="C6q-nw-XVU"/>
+                                                <action selector="recordButtonTapped" destination="B3N-Ap-eNK" eventType="touchUpInside" id="akJ-Ta-MIi"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
@@ -77,12 +72,12 @@
                         <viewLayoutGuide key="safeArea" id="WH9-EP-6yX"/>
                     </view>
                     <connections>
-                        <outlet property="recordButton" destination="WFe-5p-r3S" id="47a-b4-3Zh"/>
+                        <outlet property="recordButton" destination="OAH-2t-ebp" id="NeC-Pe-4uD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xb-r3-1Uc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="-145.27736131934034"/>
+            <point key="canvasLocation" x="1917.5999999999999" y="-145.27736131934034"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="akh-RC-cFS">
@@ -103,4 +98,7 @@
             <point key="canvasLocation" x="301.60000000000002" y="-145.27736131934034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PAK26_soranotex20140209tex_TP_V1.jpg" width="115.19999694824219" height="172.80000305175781"/>
+    </resources>
 </document>
