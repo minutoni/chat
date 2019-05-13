@@ -81,8 +81,9 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
         SFSpeechRecognizer.requestAuthorization { (status) in
             OperationQueue.main.addOperation {
                 switch status {
-                case .authorized:   // 許可OK
+                case .authorized: break   // 許可OK
                     self.recordButton.isEnabled = true
+                    //録音ボタンの設定
                     self.recordButton.backgroundColor = UIColor.blue
                 case .denied:       // 拒否
                     self.recordButton.isEnabled = false
@@ -102,7 +103,6 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
     }
     
     func setupFirebase(){
-        
         //匿名アカウントを認証する
         Auth.auth().signInAnonymously() { (user, error) in
             if error != nil {
@@ -128,6 +128,11 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
             
             if (value != nil){
                 if(value!.count >= 1){
+                    
+                    //ルームを作る側の処理
+                    print(value!.count);
+                    print("value \(value!)")
+                    print("↑初回ボタン押下時に、waitingFlgが１のユーザ")
                     //ルームを作る側の処理
                     self.createRoom(value: value as! Dictionary<AnyHashable, Any>)
                 }
@@ -142,7 +147,7 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
     //他のユーザが自分とマッチするまで待機する
     func checkMyWaitingFlg(){
         //userRef.child(self.uid).observe(FIRDataEventType.childCahnged, with: {(snapshot) in
-            userRef.child(self.uid).child("inRoom").observeSingleEvent(of: .value, with: { (snapshot) in
+            userRef.child(self.uid).child("waitingFlg").observe(.value, with: { (snapshot) in
             print(snapshot)
             let snapshotVal = snapshot.value as! String
             let snapshotKey = snapshot.key
@@ -160,7 +165,7 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
             let snapshotValue = snapshot.value as! String
             self.app.roomId = snapshotValue
             
-            if(self.app.roomId != "0"){
+            if(self.app.roomId != "1"){
                 print("roomId→ \(self.app.roomId!)")
                 print("チャットを開始します")
                 self.getMessages()
@@ -259,9 +264,10 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         self.incomingBubble = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.gray)
-        self.incomingBubble = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
+        self.outgoingBubble = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
         self.exitcomingBubble = bubbleFactory?.incomingMessagesBubbleImage(with:  UIColor.jsq_messageBubbleRed())
     }
+    
     
     //別の画面に遷移する直前に実行される処理
     override func viewWillDisappear(_ animated: Bool) {
@@ -289,35 +295,20 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
     
     //=================================↓JSQMessageの色々==========================================//
     
-    //メッセージの送信
+    //メッセージの送信  
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         self.finishSendingMessage(animated: true)
         
         if(self.app.chatStartFlg! == true){
+            //*ここからsendTextToDbへデータを送る
             sendTextToDb(text: text)
-            
+            //self.textView.text = Result.bestTranscription.formattedString
         }else{
             print("チャット相手を検索中です,,,")
         }
     }
     
-    func sendTextToDb(text: String,exitFlg:Bool = false){
-        //データベースへの送信（後述）
-        let rootRef = Database.database().reference()
-        
-        var tmpSenderId = senderId as String
-        if(exitFlg){
-            tmpSenderId = "exit"
-        }
     
-    let post:Dictionary<String, Any>? = ["from":tmpSenderId,
-                                         "name":senderDisplayName(),
-                                         "text":text]
-    
-        let postRef = rootRef.child("rooms").child(self.app.roomId!).childByAutoId()
-        postRef.setValue(post)
-    
-    }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return self.messages?[indexPath.item]
@@ -326,6 +317,7 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
     //バブルの色を返す。
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = self.messages?[indexPath.item]
+        
         if message?.senderId == self.senderId {
             return self.outgoingBubble
         } else if message?.senderId == "exit"{
@@ -341,7 +333,8 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
         if message?.senderId == self.senderId {
             return self.outgoingAvater
         }
-        return self.incomingAvater  }
+        return self.incomingAvater
+    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (self.messages?.count)!
@@ -350,6 +343,23 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
     
 //====================================================＊===============================================
     
+   
+    
+    
+    public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if available {
+            // 利用可能になったら、録音ボタンを有効にする
+            recordButton.isEnabled = true
+            recordButton.setTitle("Start Recording", for: [])
+            recordButton.backgroundColor = UIColor.blue
+        } else {
+            // 利用できないなら、録音ボタンは無効にする
+            recordButton.isEnabled = false
+            recordButton.setTitle("現在、使用不可", for: .disabled)
+        }
+    }
+    
+//==================================================-ボタンメソッド==================
     private func startRecording() throws{
         //ここに録音する処理を記述
         if let recognitionTask = recognitionTask {
@@ -374,7 +384,12 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
             
             
             if let result = result{
+                //ここ！音声データが送られてくる場所？
                 //self.textView.text = result.bestTranscription.formattedString
+                
+//                let post:Dictionary<String, Any>? = ["from":tmpSenderId,
+//                                                     "name":senderDisplayName(),
+//                                                     "text":text]
                 isFinal = result.isFinal
             }
             
@@ -402,24 +417,30 @@ class ViewController: JSQMessagesViewController,SFSpeechRecognitionTaskDelegate{
         try audioEngine.start() //オーディオエンジン開始
         
         //textView.text = "(認識中、、、そのまま話し続けてください)"
+        
     }
     
     
-    public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if available {
-            // 利用可能になったら、録音ボタンを有効にする
-            recordButton.isEnabled = true
-            recordButton.setTitle("Start Recording", for: [])
-            recordButton.backgroundColor = UIColor.blue
-        } else {
-            // 利用できないなら、録音ボタンは無効にする
-            recordButton.isEnabled = false
-            recordButton.setTitle("現在、使用不可", for: .disabled)
+    func sendTextToDb(text: String,exitFlg:Bool = false){
+        //データベースへの送信（後述）
+        let rootRef = Database.database().reference()
+        
+        var tmpSenderId = senderId as String
+        if(exitFlg){
+            tmpSenderId = "exit"
         }
+        
+        let post:Dictionary<String, Any>? = ["from":tmpSenderId,
+                                             "name":senderDisplayName(),
+                                             "text":text]
+        
+        
+        let postRef = rootRef.child("rooms").child(self.app.roomId!).childByAutoId()
+        postRef.setValue(post)
+        
     }
     
-    
-    @IBAction func recordButtonTapped() {
+      func recordButtonTapped() {
         if audioEngine.isRunning {
             // 音声エンジン動作中なら停止
             audioEngine.stop()
