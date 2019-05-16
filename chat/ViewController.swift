@@ -309,28 +309,28 @@ class ViewController: UIViewController,SFSpeechRecognitionTaskDelegate,UITextFie
     }
     
     //メッセージの送信
-//    override func didPressSend(_ button: UIButton!, withMessageText text: String!, //senderId: String!, senderDisplayName: String!,
-//        date: Date!) {
-//        self.finishSendingMessage(animated: true)
-//
-//        if(self.app.chatStartFlg! == true){
-//
-//            startRecording(text:text)
-//            //*ここからsendTextToDbへデータを送る
-//            sendTextToDb(text: text)
-//            self.textView.text = Result.bestTranscription.formattedString
-//
-//            let messageData = ["name": nameField.text!, "message": ] //messageField.text!
-//            // firebaseにdictionary型を保存するためデータを作成！
-//            databaseRef.childByAutoId().setValue(messageData) // データを保存！
-//            textView.resignFirstResponder() //キーボードを閉じる
-//            //messageField.text = "" //最終的にはtextFieldを空にする。
-//            return true
-//
-//        }else{
-//            print("チャット相手を検索中です,,,")
-//        }
-//    }
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, //senderId: String!, senderDisplayName: String!,
+        date: Date!) {
+        self.finishSendingMessage(animated: true)
+
+        if(self.app.chatStartFlg! == true){
+
+            startRecording(text:text)
+            //*ここからsendTextToDbへデータを送る
+            sendTextToDb(text: text)
+            self.textView.text = Result.bestTranscription.formattedString
+
+            let messageData = ["name": nameField.text!, "message": ] //messageField.text!
+            // firebaseにdictionary型を保存するためデータを作成！
+            databaseRef.childByAutoId().setValue(messageData) // データを保存！
+            textView.resignFirstResponder() //キーボードを閉じる
+            //messageField.text = "" //最終的にはtextFieldを空にする。
+            return true
+
+        }else{
+            print("チャット相手を検索中です,,,")
+        }
+    }
     
 
     
