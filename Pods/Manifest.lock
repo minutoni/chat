@@ -67,6 +67,9 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - leveldb-library (1.20)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -80,6 +83,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - JSQMessagesViewController
+  - MessageKit
   - SVProgressHUD
 
 SPEC REPOS:
@@ -97,6 +101,8 @@ SPEC REPOS:
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
     - leveldb-library
+    - MessageInputBar
+    - MessageKit
     - nanopb
     - SVProgressHUD
 
@@ -114,9 +120,11 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 2ec776fe73d09695d4e1fefee935e41487ffff14
+PODFILE CHECKSUM: 47782874ad667e4fae33957bb75b2ded393d6a40
 
 COCOAPODS: 1.6.1

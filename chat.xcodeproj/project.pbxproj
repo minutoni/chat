@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		450A46CD0A2E55CD8E496841 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5388434ACB9FE530B3659D55 /* Pods_chat.framework */; };
 		77052F5F22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */; };
+		773E4851228982EE001A6336 /* p0121_l.png in Resources */ = {isa = PBXBuildFile; fileRef = 773E4850228982EE001A6336 /* p0121_l.png */; };
 		776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 776E72082283E817002FB9EF /* GoogleService-Info.plist */; };
 		77DE13E822740A5700A7CB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DE13E722740A5700A7CB54 /* AppDelegate.swift */; };
 		77DE13EA22740A5700A7CB54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DE13E922740A5700A7CB54 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 		2EFA5C3974E65AC56936D67C /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		5388434ACB9FE530B3659D55 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PAK26_soranotex20140209tex_TP_V1.jpg; sourceTree = "<group>"; };
+		773E4850228982EE001A6336 /* p0121_l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p0121_l.png; sourceTree = "<group>"; };
 		776E72082283E817002FB9EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77DE13E422740A5700A7CB54 /* chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DE13E722740A5700A7CB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		77DE13E622740A5700A7CB54 /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				773E4850228982EE001A6336 /* p0121_l.png */,
 				77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */,
 				776E72082283E817002FB9EF /* GoogleService-Info.plist */,
 				77DE13E722740A5700A7CB54 /* AppDelegate.swift */,
@@ -162,6 +165,7 @@
 				77DE13EF22740A5800A7CB54 /* Assets.xcassets in Resources */,
 				77DE13ED22740A5700A7CB54 /* Main.storyboard in Resources */,
 				77052F5F22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg in Resources */,
+				773E4851228982EE001A6336 /* p0121_l.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +185,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -193,6 +199,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

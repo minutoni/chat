@@ -10,6 +10,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase'
-pod 'JSQMessagesViewController'
 pod 'SVProgressHUD'
+pod 'MessageKit'
+pod 'JSQMessagesViewController'
 end
