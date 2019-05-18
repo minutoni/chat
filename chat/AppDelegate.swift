@@ -13,17 +13,18 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate{ 
 
     var window: UIWindow?
-    var deiceToken: String?
-    var roomId: String?
-    var newroomId: String?
-    var targetId: String?
-    var chatStartFlg: Bool?
+//    var deiceToken: String?
+//    var roomId: String?
+//    var newroomId: String?
+//    var targetId: String?
+//    var chatStartFlg: Bool?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         return true
+        Database.database().isPersistenceEnabled = true //ローカルにデータベースを構築する設定
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

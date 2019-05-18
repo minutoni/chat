@@ -18,7 +18,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.app.roomId = "0"
+        //self.app.roomId = "0"
         
     }
     
