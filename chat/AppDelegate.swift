@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         // Override point for customization after application launch.
         FirebaseApp.configure()
         return true
-        Database.database().isPersistenceEnabled = true //ローカルにデータベースを構築する設定
+        //Database.database().isPersistenceEnabled = true //ローカルにデータベースを構築する設定
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -7,15 +7,18 @@
 //
 
 import UIKit
-import Firebase //Firebaseをインポート
+import Firebase
+import SVProgressHUD
 import Speech
+import FirebaseCore
+import FirebaseDatabase
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,SFSpeechRecognitionTaskDelegate {
     
     @IBOutlet weak var table: UITableView! //送信したデータを表示するTableView
     
     //音声確認用
-     @IBOutlet var textView: UITextView!
+    @IBOutlet var textView: UITextView!
     
     //レコボタン追加
     @IBOutlet var recordButton: UIButton!
@@ -23,11 +26,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var recognitionTask: SFSpeechRecognitionTask?
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private let audioEngine = AVAudioEngine()
-
+    
     
     var contentArray: [DataSnapshot] = [] //Fetchしたデータを入れておく配列、この配列をTableViewで表示
     
-    var contentSubArray: [String] = []
+    var contentSubArray: String = ""
+    //subから持ってきた
+    var isCreate = true //データの作成か更新かを判定、trueなら作成、falseなら更新
     
     var snap: DataSnapshot! //FetchしたSnapshotsを格納する変数
     
@@ -48,9 +53,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
         
         //recordButton.isEnabled = false
+        //selectedSnapがnilならその後の処理をしない
+        guard let snap = self.selectedSnap else { return }
         
+        //受け取ったselectedSnapを辞書型に変換
+        let item = snap.value as! Dictionary<String, AnyObject>
+        //textFieldに受け取ったデータのcontentを表示
+        textView.text = item["content"] as? String
+        //isCreateをfalseにし、更新するためであることを明示
+        isCreate = false
     }
     
+    
+    //画面が切り替わったあと
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -59,19 +74,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         table.rowHeight = UITableView.automaticDimension
         
         
-        //selectedSnapがnilならその後の処理をしない
-        guard let snap = self.selectedSnap else { return }
-        
-        //受け取ったselectedSnapを辞書型に変換
-        let item = snap.value as! Dictionary<String, AnyObject>
-        //textFieldに受け取ったデータのcontentを表示
-        //textField.text = item["content"] as? String
-        //isCreateをfalseにし、更新するためであることを明示
-        //isCreate = false
+        //        //selectedSnapがnilならその後の処理をしない
+        //        guard let snap = self.selectedSnap else { return }
+        //
+        //        //受け取ったselectedSnapを辞書型に変換
+        //        let item = snap.value as! Dictionary<String, AnyObject>
+        //        //textFieldに受け取ったデータのcontentを表示
+        //        textView.text = item["result.bestTranscription.formattedString"] as? String
+        //        //isCreateをfalseにし、更新するためであることを明示
+        //        isCreate = false
         
         //レコぶん
-        speechRecognizer.delegate = self as! SFSpeechRecognizerDelegate    // デリゲート先になる
-        //speechRecognizer.delegate = self as? SFSpeechRecognizerDelegate // デリゲート先になる
+        //speechRecognizer.delegate = self as! SFSpeechRecognizerDelegate    // デリゲート先になる
+        speechRecognizer.delegate = self as? SFSpeechRecognizerDelegate // デリゲート先になる
         
         SFSpeechRecognizer.requestAuthorization { (status) in
             OperationQueue.main.addOperation {
@@ -106,14 +121,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     //ViewControllerへの遷移のボタン
-//    @IBAction func didSelectAdd() {
-//        self.transition()
-//    }
+    //    @IBAction func didSelectAdd() {
+    //        self.transition()
+    //    }
     
     //ViewControllerへの遷移
-//    func transition() {
-//        self.performSegue(withIdentifier: "toView", sender: self)
-//    }
+    //    func transition() {
+    //        self.performSegue(withIdentifier: "toView", sender: self)
+    //    }
     
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,7 +175,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func reload(snap: DataSnapshot) {
         if snap.exists() {
             print(snap)
-            //FIRDataSnapshotが存在するか確認
+            //FIRDataS
+            //napshotが存在するか確認
             contentArray.removeAll()
             //1つになっているFIRDataSnapshotを分割し、配列に入れる
             for item in snap.children {
@@ -184,26 +200,26 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedSnap: DataSnapshot!
     //選択されたCellの番号を引数に取り、contentArrayからその番号の値を取り出し、selectedSnapに代入
     //その後遷移
-//    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
-//        //ルートからのchildをユーザーのIDに指定
-//        //ユーザーIDからのchildを選択されたCellのデータのIDに指定
-//        self.selectedSnap = contentArray[indexPath.row]
-//        //self.transition(from: <#UIViewController#>, to: <#UIViewController#>)
-//    }
+    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
+        //ルートからのchildをユーザーのIDに指定
+        //ユーザーIDからのchildを選択されたCellのデータのIDに指定
+        self.selectedSnap = contentArray[indexPath.row]
+        //self.transition(from: <#UIViewController#>, to: <#UIViewController#>)
+    }
     //Cellがタップされると呼ばれる
     //上記のdidSelectedRowにタップされたCellのIndexPathを渡す
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.didSelectRow(selectedIndexPath: indexPath)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.didSelectRow(selectedIndexPath: indexPath)
+    }
     //遷移するときに呼ばれる
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toView" {
-//            let view = segue.destination as! subViewController
-//            if let snap = self.selectedSnap {
-//                view.selectedSnap = snap
-//            }
-//        }
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "toView" {
+    //            let view = segue.destination as! subViewController
+    //            if let snap = self.selectedSnap {
+    //                view.selectedSnap = snap
+    //            }
+    //        }
+    //    }
     
     //スワイプ削除のメソッド
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -225,6 +241,23 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     //==========================================subViewからの引用〜
     
     
+    //Postボタンを以下のように変更=====subから
+    //@IBAction
+    //    func post(sender: UIButton) {
+    //        if isCreate {
+    //            //投稿のためのメソッド
+    //            create()
+    //        }else {
+    //            //更新するためのメソッド
+    //            update()
+    //        }
+    //        _ = self.navigationController?.popViewController(animated: true)
+    //    }
+    //Returnキーを押すと、キーボードを隠す
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     //データの送信のメソッド
     func create() {
         //textFieldになにも書かれてない場合は、その後の処理をしない
@@ -235,7 +268,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         //setValueでデータを送信する。第一引数に送信したいデータを辞書型で入れる
         //今回は記入内容と一緒にユーザーIDと時間を入れる
         //FIRServerValue.timestamp()で現在時間を取る
-        self.ref.child((Auth.auth().currentUser?.uid)!).childByAutoId().setValue(["user": (Auth.auth().currentUser?.uid)!,"content": contentSubArray, "date": ServerValue.timestamp()])
+        self.ref.child((Auth.auth().currentUser?.uid)!)
+            .childByAutoId().setValue([
+                "user": (Auth.auth().currentUser?.uid)!,
+                "content": contentSubArray,
+                "date": ServerValue.timestamp()
+                ]
+        )
     }
     
     //更新のためのメソッド
@@ -262,6 +301,37 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //===========================音声認識===================================================
+    
+    @IBAction func recordButtonTapped() {
+        if audioEngine.isRunning {
+            // 音声エンジン動作中なら停止
+            audioEngine.stop()
+            print("if文が呼ばれました")
+            recognitionRequest?.endAudio()
+            recordButton.isEnabled = false
+            recordButton.setTitle("Stopping", for: .disabled)
+            //recordButton.backgroundColor = UIColor.lightGray
+            //            self.create()
+            //self.reload(snap: self.snap)
+            if isCreate {
+                //投稿のためのメソッド
+                create()
+            } else {
+                //更新するためのメソッド
+                update()
+            }
+            _ = self.navigationController?.popViewController(animated: true)
+            //isCreateをfalseにし、更新するためであることを明示
+            isCreate = false
+        } else {
+            // 録音を開始する
+            try! startRecording()
+            recordButton.setTitle("認識を完了する", for: [])
+            //recordButton.backgroundColor = UIColor.red
+        }
+        
+    }
+    
     private func startRecording() throws{
         //ここに録音する処理を記述
         if let recognitionTask = recognitionTask {
@@ -287,24 +357,26 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if let result = result{
                 self.textView.text = result.bestTranscription.formattedString
-                self.contentSubArray = [result.bestTranscription.formattedString]
+                self.contentSubArray = result.bestTranscription.formattedString
+                // item.text =  String[result.bestTranscription.formattedString]
                 
                 isFinal = result.isFinal
             }
             
-            if Error.self != nil || isFinal{
+            //ここのせい！多分！
+            
+            
+            if error != nil || isFinal {
+                print("error:(error)")
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
-                
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                
                 self.recordButton.isEnabled = true
-                self.recordButton.setTitle("start recording", for: [])
-                
-                //self.recordButton.backgroundColor = UIColor.blue
-                
+                //self.textView.text = "音声認識スタート"
+                self.recordButton.setTitle("録音開始", for: [])
             }
+            
         }
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -315,6 +387,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         audioEngine.prepare() //オーディオエンジン準備
         try audioEngine.start() //オーディオエンジン開始
+        print("audioEngine.isRunnnig2")
+        
         
         //textView.text = "(認識中、、、そのまま話し続けてください)"
     }
@@ -332,22 +406,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    @IBAction func recordButtonTapped() {
-        if audioEngine.isRunning {
-            // 音声エンジン動作中なら停止
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
-            recordButton.isEnabled = false
-            recordButton.setTitle("Stopping", for: .disabled)
-            //recordButton.backgroundColor = UIColor.lightGray
-            return
-        }
-        // 録音を開始する
-        try! startRecording()
-        recordButton.setTitle("認識を完了する", for: [])
-        //recordButton.backgroundColor = UIColor.red
-    }
     
 }
-    
+
 

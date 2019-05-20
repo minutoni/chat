@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "chat/ListViewController.swift"
-            timestampString = "579851027.217603"
+            timestampString = "580041154.564137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
-            landmarkName = "recordButtonTapped()"
-            landmarkType = "7">
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

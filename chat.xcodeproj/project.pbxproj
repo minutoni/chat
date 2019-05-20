@@ -11,6 +11,7 @@
 		77052F5F22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */; };
 		7727FD18228EC49500A0DAD6 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727FD16228EC49500A0DAD6 /* ListTableViewCell.swift */; };
 		7727FD19228EC49500A0DAD6 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7727FD17228EC49500A0DAD6 /* ListTableViewCell.xib */; };
+		7727FD1B2290F01600A0DAD6 /* アプリアイコン_アートボード 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727FD1A2290F01600A0DAD6 /* アプリアイコン_アートボード 1.png */; };
 		773E4851228982EE001A6336 /* p0121_l.png in Resources */ = {isa = PBXBuildFile; fileRef = 773E4850228982EE001A6336 /* p0121_l.png */; };
 		776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 776E72082283E817002FB9EF /* GoogleService-Info.plist */; };
 		77DBC9E1228EAC0A00BCA7C9 /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC9E0228EAC0A00BCA7C9 /* subViewController.swift */; };
@@ -32,6 +33,7 @@
 		77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PAK26_soranotex20140209tex_TP_V1.jpg; sourceTree = "<group>"; };
 		7727FD16228EC49500A0DAD6 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		7727FD17228EC49500A0DAD6 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		7727FD1A2290F01600A0DAD6 /* アプリアイコン_アートボード 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "アプリアイコン_アートボード 1.png"; sourceTree = "<group>"; };
 		773E4850228982EE001A6336 /* p0121_l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p0121_l.png; sourceTree = "<group>"; };
 		776E72082283E817002FB9EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77DBC9E0228EAC0A00BCA7C9 /* subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		77DE13E622740A5700A7CB54 /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				7727FD1A2290F01600A0DAD6 /* アプリアイコン_アートボード 1.png */,
 				773E4850228982EE001A6336 /* p0121_l.png */,
 				77052F5E22869E2A00154FBF /* PAK26_soranotex20140209tex_TP_V1.jpg */,
 				776E72082283E817002FB9EF /* GoogleService-Info.plist */,
@@ -178,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7727FD1B2290F01600A0DAD6 /* アプリアイコン_アートボード 1.png in Resources */,
 				77DE13F222740A5800A7CB54 /* LaunchScreen.storyboard in Resources */,
 				776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */,
 				77DE13EF22740A5800A7CB54 /* Assets.xcassets in Resources */,
@@ -412,6 +416,7 @@
 			baseConfigurationReference = 2EFA5C3974E65AC56936D67C /* Pods-chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 566J6A54F3;
 				INFOPLIST_FILE = chat/Info.plist;
@@ -431,6 +436,7 @@
 			baseConfigurationReference = 14DF88C99881E36A946F3EC3 /* Pods-chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 566J6A54F3;
 				INFOPLIST_FILE = chat/Info.plist;
