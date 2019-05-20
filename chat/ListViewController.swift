@@ -200,17 +200,17 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedSnap: DataSnapshot!
     //選択されたCellの番号を引数に取り、contentArrayからその番号の値を取り出し、selectedSnapに代入
     //その後遷移
-    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
-        //ルートからのchildをユーザーのIDに指定
-        //ユーザーIDからのchildを選択されたCellのデータのIDに指定
-        self.selectedSnap = contentArray[indexPath.row]
-        //self.transition(from: <#UIViewController#>, to: <#UIViewController#>)
-    }
+//    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
+//        //ルートからのchildをユーザーのIDに指定
+//        //ユーザーIDからのchildを選択されたCellのデータのIDに指定
+//        self.selectedSnap = contentArray[indexPath.row]
+//        //self.transition(from: <#UIViewController#>, to: <#UIViewController#>)
+//    }
     //Cellがタップされると呼ばれる
     //上記のdidSelectedRowにタップされたCellのIndexPathを渡す
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.didSelectRow(selectedIndexPath: indexPath)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        //self.didSelectRow(selectedIndexPath: indexPath)
+//    }
     //遷移するときに呼ばれる
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //        if segue.identifier == "toView" {
@@ -286,7 +286,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         ref.child((Auth.auth().currentUser?.uid)!).child("\(self.selectedSnap.key)").updateChildValues(["user": (Auth.auth().currentUser?.uid)!,"content": contentSubArray, "date": ServerValue.timestamp()])
     }
     
-    func logout() {
+    @IBAction func logout() {
         do {
             //do-try-catchの中で、FIRAuth.auth()?.signOut()を呼ぶだけで、ログアウトが完了
             try Auth.auth().signOut()
@@ -320,13 +320,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //更新するためのメソッド
                 update()
             }
-            _ = self.navigationController?.popViewController(animated: true)
+            //_ = self.navigationController?.popViewController(animated: true)
             //isCreateをfalseにし、更新するためであることを明示
             isCreate = false
         } else {
             // 録音を開始する
             try! startRecording()
-            recordButton.setTitle("認識を完了する", for: [])
+            //recordButton.setTitle("認識を完了する", for: [])
+            print("認識を完了する")
             //recordButton.backgroundColor = UIColor.red
         }
         
@@ -374,7 +375,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.recognitionTask = nil
                 self.recordButton.isEnabled = true
                 //self.textView.text = "音声認識スタート"
-                self.recordButton.setTitle("録音開始", for: [])
+                //self.recordButton.setTitle("録音開始", for: [])
+                print("録音開始")
             }
             
         }
@@ -397,7 +399,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         if available {
             // 利用可能になったら、録音ボタンを有効にする
             recordButton.isEnabled = true
-            recordButton.setTitle("Start Recording", for: [])
+            //recordButton.setTitle("Start Recording", for: [])
             //recordButton.backgroundColor = UIColor.blue
         } else {
             // 利用できないなら、録音ボタンは無効にする
