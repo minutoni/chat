@@ -93,7 +93,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 switch status {
                 case .authorized:   // 許可OK
                     self.recordButton.isEnabled = true
-                    self.recordButton.backgroundColor = UIColor.blue
+                    //self.recordButton.backgroundColor = UIColor.blue
                 case .denied:       // 拒否
                     self.recordButton.isEnabled = false
                     self.recordButton.setTitle("録音許可なし", for: .disabled)
@@ -283,7 +283,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         //ユーザーIDからのchildを受け取ったデータのIDに指定
         //updateChildValueを使って更新
         ref.keepSynced(true)
-        ref.child((Auth.auth().currentUser?.uid)!).child("\(self.selectedSnap.key)").updateChildValues(["user": (Auth.auth().currentUser?.uid)!,"content": contentSubArray, "date": ServerValue.timestamp()])
+        ref.child((Auth.auth().currentUser?.uid)!)
+            .childByAutoId().setValue([
+                "user": (Auth.auth().currentUser?.uid)!,
+                "content": contentSubArray,
+                "date": ServerValue.timestamp()
+            ])
     }
     
     @IBAction func logout() {

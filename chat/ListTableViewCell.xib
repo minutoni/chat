@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="356" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FXs-kb-fnB">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FXs-kb-fnB">
                         <rect key="frame" x="8" y="0.0" width="340" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,7 +31,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="contenttext" destination="FXs-kb-fnB" id="v1i-u9-6Xy"/>
+                <outlet property="contenttext" destination="FXs-kb-fnB" id="hpB-y2-kcW"/>
             </connections>
             <point key="canvasLocation" x="62.318840579710148" y="82.366071428571431"/>
         </tableViewCell>
