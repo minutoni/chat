@@ -226,7 +226,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         //デリートボタンを追加
         if editingStyle == .delete {
             //選択されたCellのNSIndexPathを渡し、データをFirebase上から削除するためのメソッド
-            self.delete(indexPath)
+            //self.delete(indexPath)
+            self.delete(deleteIndexPath: indexPath)
             //TableView上から削除
             table.deleteRows(at: [indexPath as IndexPath], with: .fade)
         }
@@ -292,9 +293,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func logout() {
+        let firebaseAuth = Auth.auth()
         do {
             //do-try-catchの中で、FIRAuth.auth()?.signOut()を呼ぶだけで、ログアウトが完了
-            try Auth.auth().signOut()
+            try firebaseAuth.signOut()
             
             //先頭のNavigationControllerに遷移
             let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Nav")
@@ -308,6 +310,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     //===========================音声認識===================================================
     
     @IBAction func recordButtonTapped() {
+        
+        //recordButton.layer.shadowOpacity = 0.5
+        // ボタンを縮こませます
+        //UIView.animate(withDuration: 0.2, animations: { _ in
+            //self.recordButton.transform = CGAffineTransformMakeRotation(0)
+        //})
         if audioEngine.isRunning {
             // 音声エンジン動作中なら停止
             audioEngine.stop()
@@ -330,7 +338,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             isCreate = false
         } else {
             // 録音を開始する
-            try! startRecording()
+          try! startRecording()
             //recordButton.setTitle("認識を完了する", for: [])
             print("認識を完了する")
             //recordButton.backgroundColor = UIColor.red
@@ -394,7 +402,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         audioEngine.prepare() //オーディオエンジン準備
         try audioEngine.start() //オーディオエンジン開始
-        print("audioEngine.isRunnnig2")
+        //print("audioEngine.isRunnnig2")
         
         
         //textView.text = "(認識中、、、そのまま話し続けてください)"
@@ -412,6 +420,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             recordButton.setTitle("現在、使用不可", for: .disabled)
         }
     }
+    
+
     
     
 }
