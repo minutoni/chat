@@ -317,13 +317,16 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             //self.recordButton.transform = CGAffineTransformMakeRotation(0)
         //})
         if audioEngine.isRunning {
+            
+            recordButton.setImage(UIImage.init(named: "アプリアイコン1_アートボード 1.png"), for: UIControl.State.normal)
             // 音声エンジン動作中なら停止
             audioEngine.stop()
             print("if文が呼ばれました")
             recognitionRequest?.endAudio()
             recordButton.isEnabled = false
             recordButton.setTitle("Stopping", for: .disabled)
-            //recordButton.backgroundColor = UIColor.lightGray
+            
+            //recordButton.col = UIColor.lightGray
             //            self.create()
             //self.reload(snap: self.snap)
             if isCreate {
@@ -342,7 +345,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             //recordButton.setTitle("認識を完了する", for: [])
             print("認識を完了する")
             //recordButton.backgroundColor = UIColor.red
+            
+            recordButton.setImage(UIImage.init(named: "アプリアイコン(赤).png"), for: UIControl.State.normal)
         }
+        
+        
         
     }
     
