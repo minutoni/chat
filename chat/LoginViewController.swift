@@ -17,7 +17,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        emailTextField.placeholder = "メールアドレス"
+        passwordTextField.placeholder = "パスワード"
         emailTextField.delegate = self //デリゲートをセット
         passwordTextField.delegate = self //デリゲートをセット
         passwordTextField.isSecureTextEntry  = true // 文字を非表示に

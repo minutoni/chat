@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="282" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="🔑パスワード" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etM-sB-pJp">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="282" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etM-sB-pJp">
                                 <rect key="frame" x="47.5" y="365.5" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="1x6-69-Oal"/>
@@ -43,7 +43,7 @@
                                     <segue destination="0tO-Q5-Hrh" kind="show" identifier="toLogin" id="GjJ-ln-7Ai"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="✉️メールアドレス" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sm2-8y-g5W">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sm2-8y-g5W">
                                 <rect key="frame" x="47.5" y="317.5" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="6aH-hY-DU8"/>
@@ -202,7 +202,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="282" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="🔑パスワード" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="auO-Ol-4zj">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="282" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="auO-Ol-4zj">
                                 <rect key="frame" x="47.5" y="365.5" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="0o8-z7-s17"/>
@@ -212,7 +212,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="✉️メールアドレス" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zbf-Ek-wsC">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zbf-Ek-wsC">
                                 <rect key="frame" x="47.5" y="317.5" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="5aB-Ql-pKJ"/>
@@ -286,6 +286,6 @@
         <image name="アプリアイコン1_アートボード 1.png" width="1536" height="1536"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mea-el-xsC"/>
+        <segue reference="foC-ns-VzZ"/>
     </inferredMetricsTieBreakers>
 </document>

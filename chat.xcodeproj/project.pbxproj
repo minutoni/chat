@@ -15,6 +15,7 @@
 		7727FD18228EC49500A0DAD6 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727FD16228EC49500A0DAD6 /* ListTableViewCell.swift */; };
 		7727FD19228EC49500A0DAD6 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7727FD17228EC49500A0DAD6 /* ListTableViewCell.xib */; };
 		773E4851228982EE001A6336 /* p0121_l.png in Resources */ = {isa = PBXBuildFile; fileRef = 773E4850228982EE001A6336 /* p0121_l.png */; };
+		775B0D7222C06E7000B74846 /* アプリアイコン(赤).png in Resources */ = {isa = PBXBuildFile; fileRef = 775B0D7122C06E6F00B74846 /* アプリアイコン(赤).png */; };
 		776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 776E72082283E817002FB9EF /* GoogleService-Info.plist */; };
 		77DBC9E3228EB43300BCA7C9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC9E2228EB43300BCA7C9 /* SignupViewController.swift */; };
 		77DBC9E5228EB54D00BCA7C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC9E4228EB54D00BCA7C9 /* LoginViewController.swift */; };
@@ -35,6 +36,7 @@
 		7727FD16228EC49500A0DAD6 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		7727FD17228EC49500A0DAD6 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		773E4850228982EE001A6336 /* p0121_l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p0121_l.png; sourceTree = "<group>"; };
+		775B0D7122C06E6F00B74846 /* アプリアイコン(赤).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "アプリアイコン(赤).png"; sourceTree = "<group>"; };
 		776E72082283E817002FB9EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77DBC9E2228EB43300BCA7C9 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		77DBC9E4228EB54D00BCA7C9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		77DE13E622740A5700A7CB54 /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				775B0D7122C06E6F00B74846 /* アプリアイコン(赤).png */,
 				7702E8BC2295902000CA402C /* アプリアイコン1_アートボード 1.png */,
 				7702E8B82295097400CA402C /* アプリアイコン-2_アートボード 1のコピー.png */,
 				773E4850228982EE001A6336 /* p0121_l.png */,
@@ -175,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775B0D7222C06E7000B74846 /* アプリアイコン(赤).png in Resources */,
 				77DE13F222740A5800A7CB54 /* LaunchScreen.storyboard in Resources */,
 				776E72092283E817002FB9EF /* GoogleService-Info.plist in Resources */,
 				77DE13EF22740A5800A7CB54 /* Assets.xcassets in Resources */,

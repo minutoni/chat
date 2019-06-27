@@ -174,6 +174,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     //読み込んだデータは最初すべてのデータが一つにまとまっているので、それらを分割して、配列に入れる
     func reload(snap: DataSnapshot) {
         if snap.exists() {
+            
             print(snap)
             //FIRDataS
             //napshotが存在するか確認
@@ -259,38 +260,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         textField.resignFirstResponder()
         return true
     }
-    //データの送信のメソッド
-    func create() {
-        //textFieldになにも書かれてない場合は、その後の処理をしない
-        //guard let text = textField.text else { return }
-        
-        //ロートからログインしているユーザーのIDをchildにしてデータを作成
-        //childByAutoId()でユーザーIDの下に、IDを自動生成してその中にデータを入れる
-        //setValueでデータを送信する。第一引数に送信したいデータを辞書型で入れる
-        //今回は記入内容と一緒にユーザーIDと時間を入れる
-        //FIRServerValue.timestamp()で現在時間を取る
-        self.ref.child((Auth.auth().currentUser?.uid)!)
-            .childByAutoId().setValue([
-                "user": (Auth.auth().currentUser?.uid)!,
-                "content": contentSubArray,
-                "date": ServerValue.timestamp()
-                ]
-        )
-    }
     
-    //更新のためのメソッド
-    func update() {
-        //ルートからのchildをユーザーIDに指定
-        //ユーザーIDからのchildを受け取ったデータのIDに指定
-        //updateChildValueを使って更新
-        ref.keepSynced(true)
-        ref.child((Auth.auth().currentUser?.uid)!)
-            .childByAutoId().setValue([
-                "user": (Auth.auth().currentUser?.uid)!,
-                "content": contentSubArray,
-                "date": ServerValue.timestamp()
-            ])
-    }
     
     @IBAction func logout() {
         let firebaseAuth = Auth.auth()
@@ -323,8 +293,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             audioEngine.stop()
             print("if文が呼ばれました")
             recognitionRequest?.endAudio()
-            recordButton.isEnabled = false
-            recordButton.setTitle("Stopping", for: .disabled)
+            //recordButton.isEnabled = false
+            //recordButton.setTitle("Stopping", for: .disabled)
             
             //recordButton.col = UIColor.lightGray
             //            self.create()
@@ -332,7 +302,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             if isCreate {
                 //投稿のためのメソッド
                 create()
-            } else {
+            }else{
                 //更新するためのメソッド
                 update()
             }
@@ -414,6 +384,49 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //textView.text = "(認識中、、、そのまま話し続けてください)"
     }
+    
+    //データの送信のメソッド
+    func create() {
+        //textFieldになにも書かれてない場合は、その後の処理をしない
+        //guard textView.text != nil else { return }
+        if textView.text != nil{
+        //ロートからログインしているユーザーのIDをchildにしてデータを作成
+        //childByAutoId()でユーザーIDの下に、IDを自動生成してその中にデータを入れる
+        //setValueでデータを送信する。第一引数に送信したいデータを辞書型で入れる
+        //今回は記入内容と一緒にユーザーIDと時間を入れる
+        //FIRServerValue.timestamp()で現在時間を取る
+        self.ref.child((Auth.auth().currentUser?.uid)!)
+            .childByAutoId().setValue([
+                "user": (Auth.auth().currentUser?.uid)!,
+                "content": contentSubArray,
+                "date": ServerValue.timestamp()
+                ]
+        )
+        }else{
+            
+        }
+    }
+    
+    //更新のためのメソッド
+    func update() {
+        //ルートからのchildをユーザーIDに指定
+        //ユーザーIDからのchildを受け取ったデータのIDに指定
+        //updateChildValueを使って更新
+        //guard textView.text != nil else { return }
+        if textView.text != nil{
+        ref.keepSynced(true)
+        ref.child((Auth.auth().currentUser?.uid)!)
+            .childByAutoId().setValue([
+                "user": (Auth.auth().currentUser?.uid)!,
+                "content": contentSubArray,
+                "date": ServerValue.timestamp()
+                ])
+        }else{
+            
+        }
+    }
+    
+    
     
     public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
